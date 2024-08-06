@@ -10,6 +10,7 @@ export default function ProcesoBatch() {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState('');
+  const [selectedTab, setSelectedTab] = useState<'table' | 'welcome'>('table');
 
   // Función para abrir el modal y establecer el contenido
   const openModal = (content: string) => {
@@ -22,7 +23,7 @@ export default function ProcesoBatch() {
     setModalIsOpen(false);
   };
     return ( 
-      <div >
+      <div className='rounded-lg bg-white shadow-xl  p-5 ' >
         <p className='text-center mb-3 text-customGreen font-bold text-2xl'>Procesos Batch</p>
         <div className="grid grid-cols-1 gap-4">
             <div className='border text-center bg-white font-bold text-black rounded-lg transition-transform transform hover:scale-105'>Total de Procesos
@@ -44,6 +45,7 @@ export default function ProcesoBatch() {
             
             </div>
         </div>
+        
         <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -52,33 +54,57 @@ export default function ProcesoBatch() {
         overlayClassName="fixed inset-0 bg-black bg-opacity-50 z-40"
       >
         <div className="bg-white p-6 rounded-lg shadow-lg w-70 max-w-4xl h-70 max-h-screen overflow-y-auto">
-          <h2 className="text-xl font-semibold mb-4">{modalContent}</h2>
-  <table className="min-w-full p-3 border-collapse border border-border shadow-lg">
-  <thead>
-    <tr className="bg-primary text-primary-foreground">
-      <th className="border border-border p-4 text-left">Nombre del Proceso</th>
-      <th className="border border-border p-4 text-left">Hora de Inicio</th>
-      <th className="border border-border p-4 text-left">Tiempo de Ejecución</th>
-    </tr>
-  </thead>
-  <tbody className="bg-card">
-    <tr className="hover:bg-secondary transition-colors duration-200">
-      <td className="border border-border p-4">Proceso en Ejecución 1</td>
-      <td className="border border-border p-4">14:34:42</td>
-      <td className="border border-border p-4">00:05:05</td>
-    </tr>
-    <tr className="hover:bg-secondary transition-colors duration-200">
-      <td className="border border-border p-4">Proceso en Ejecución 2</td>
-      <td className="border border-border p-4">14:29:42</td>
-      <td className="border border-border p-4">00:10:05</td>
-    </tr>
-    <tr className="hover:bg-secondary transition-colors duration-200">
-      <td className="border border-border p-4">Proceso en Ejecución 3</td>
-      <td className="border border-border p-4">14:24:42</td>
-      <td className="border border-border p-4">00:15:05</td>
-    </tr>
-  </tbody>
-</table>
+        <div className="flex mb-4">
+            <button
+              className={`py-2 px-4 rounded-tl-lg ${selectedTab === 'table' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-black'}`}
+              onClick={() => setSelectedTab('table')}
+            >
+              Tabla
+            </button>
+            <button
+              className={`py-2 px-4 rounded-tr-lg ${selectedTab === 'welcome' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-black'}`}
+              onClick={() => setSelectedTab('welcome')}
+            >
+              Grafico
+            </button>
+          </div>
+          {selectedTab === 'table' ? (
+            <>
+              <h2 className="text-xl font-semibold mb-4">{modalContent === 'total' ? 'ATMs Totales' : modalContent === 'online' ? 'ATMs Online' : 'ATMs Offline'}</h2>
+              <table className="min-w-full p-3 border-collapse border border-border shadow-lg">
+              <thead>
+                <tr>
+                  <th className="border border-border p-2">Columna 1</th>
+                  <th className="border border-border p-2">Columna 2</th>
+                  <th className="border border-border p-2">Columna 3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-border p-2">Fila 1, Columna 1</td>
+                  <td className="border border-border p-2">Fila 1, Columna 2</td>
+                  <td className="border border-border p-2">Fila 1, Columna 3</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2">Fila 2, Columna 1</td>
+                  <td className="border border-border p-2">Fila 2, Columna 2</td>
+                  <td className="border border-border p-2">Fila 2, Columna 3</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2">Fila 3, Columna 1</td>
+                  <td className="border border-border p-2">Fila 3, Columna 2</td>
+                  <td className="border border-border p-2">Fila 3, Columna 3</td>
+                </tr>
+              </tbody>
+              </table>
+            </>
+          ):(
+            <div className="text-center">
+              <h2 className="text-xl font-semibold mb-4">Grafico</h2>
+              Logica para los graficos
+
+            </div>
+          )}
           <button
             onClick={closeModal}
             className="bg-blue-600 text-white py-2 px-4 rounded mt-4"

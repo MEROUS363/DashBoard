@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import { Chart } from 'chart.js/auto';
+import Graficos from "@/components/Graficos";
 
 interface ATM {
   id: number;
@@ -15,6 +17,7 @@ const ATM: React.FC = () => {
   const [modalContent, setModalContent] = useState<'total' | 'online' | 'offline'>('total');
   const [selectedATM, setSelectedATM] = useState(null);
   const [selectedCity, setSelectedCity] = useState<string>('');
+  const [selectedTab, setSelectedTab] = useState<'table' | 'welcome'>('table');
 
   const atms: ATM[] = [
     { id: 1, errorType: 'Error de conexión', city: 'Quito', office: 'Oficina Central', status: 'Offline' },
@@ -68,7 +71,7 @@ const ATM: React.FC = () => {
     }
   };
   return (
-    <div>
+    <div className='rounded-lg bg-white shadow-xl  p-5 '>
       <p className='text-center mb-3 text-customGreen font-bold text-2xl'>Estados ATM</p>
       <div className="bg-card  p-4 rounded-lg shadow-md bg-customGreen  border-l-4 border-l-customLima">
         <label className="block text-sm text-white font-bold text-card-foreground  mb-2 ">
@@ -97,58 +100,59 @@ const ATM: React.FC = () => {
         </select>
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 pt-5">
-        <div className='flex transition-transform transform hover:scale-105 border-2  rounded-lg border-lime-600'>
-          <div>
-          <button className="  flex gap-4 h-24 bg-customGreen text-black text-left p-4 rounded-l-lg shadow-md justify-center items-center"onClick={() => openModal('total')}>
-          <h2 className="text-lg text-white  font-semibold mb-2 ">ATMs Totales</h2>
-          </button>
-          </div>
-          <div className='h-24 bg-white rounded-r-lg w-32 text-center flex flex-col items-center justify-center'>
-          <div className="relative w-20 h-20 text-center justify-center items-center ">
-            <svg className="absolute inset-0 text-center justify-center items-center" viewBox="0 0 100 100">
-              <circle  cx="50" cy="50" r="45" stroke="#64B5F6" stroke-width="10" fill="none" />
-            </svg>
-            <span className="absolute inset-0 flex  items-center justify-center text-3xl font-bold text-customGray">{counts.total}</span>
-          </div>
-          </div>
-          
-        </div >
-        <div className='flex transition-transform transform hover:scale-105 border-2  rounded-lg border-lime-600'>
-          <div>
-          <button className="flex gap-4 h-24 bg-customGreen  text-black text-left p-4 rounded-l-lg shadow-md justify-center items-center" onClick={() => openModal('online')}>
-          <h2 className="text-lg text-white font-semibold mb-2 ">ATMs   Online</h2>
-          
-          </button>
-          </div>
-          <div className='h-24 bg-white rounded-r-lg w-32 text-center flex flex-col items-center justify-center'>
-          <div className="relative w-20 h-20 text-center justify-center items-center ">
-            <svg className="absolute inset-0 text-center justify-center items-center " viewBox="0 0 100 100">
-              <circle  cx="50" cy="50" r="45" stroke="#40D47E" stroke-width="10" fill="none" />
-            </svg>
-            <span className="absolute inset-0 flex  items-center justify-center text-3xl font-bold text-customGray">{counts.online}</span>
-          </div>
-          </div>
-          
-        </div>
-        <div className='flex transition-transform transform hover:scale-105 border-2  rounded-lg border-lime-600'>
-          <div >
-          <button className="flex gap-4 h-24 bg-customGreen  text-black text-left p-4 rounded-l-lg shadow-md justify-center items-center" onClick={() => openModal('offline')}>
-          <h2 className="text-lg text-white font-semibold mb-2 ">ATMs Offline</h2>
-          
-          </button>
-          </div>
-          <div className='h-24 bg-white rounded-r-lg w-32 text-center flex flex-col items-center justify-center '>
-          <div className="relative w-20 h-20 text-center justify-center items-center ">
-            <svg className="absolute inset-0 text-center justify-center items-center" viewBox="0 0 100 100">
-              <circle  className={counts.offline > 0 ? "blink-border" : ""} cx="50" cy="50" r="45" stroke="#40D47E"  stroke-width="10" fill="none" />
-            </svg>
-            <span className="absolute inset-0 flex  items-center justify-center text-3xl font-bold text-black">{counts.offline}</span>
-          </div>
-          </div>
-</div>
-      
 
+        <div className='flex transition-transform transform hover:scale-105 border-2 bg-customGreen rounded-lg border-lime-600'>
+          <button
+            className="flex gap-4 h-24 text-black text-left p-4 rounded-l-lg shadow-md justify-center items-center"
+            onClick={() => openModal('total')}
+          >
+            <h2 className="text-lg text-white font-semibold mb-2">ATMs Totales</h2>
+          </button>
+
+          <div className='h-24 bg-white rounded-r-lg w-36 text-center flex flex-col items-center justify-center'>
+            <div className="relative w-20 h-20 flex items-center justify-center">
+              <svg className="absolute inset-0" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" stroke="#64B5F6" strokeWidth="10" fill="none" />
+              </svg>
+              <span className="absolute inset-0 flex items-center justify-center text-3xl font-bold text-customGray">{counts.total}</span>
+            </div>
+          </div>
+        </div>
         
+        <div className='flex transition-transform transform hover:scale-105 border-2 bg-customGreen rounded-lg border-lime-600'>
+          <button
+            className="flex gap-4 h-24 text-black text-left p-4 rounded-l-lg shadow-md justify-center items-center"
+            onClick={() => openModal('online')}
+          >
+            <h2 className="text-lg text-white font-semibold mb-2">ATMs Online</h2>
+          </button>
+
+          <div className='h-24 bg-white rounded-r-lg w-36 text-center flex flex-col items-center justify-center'>
+            <div className="relative w-20 h-20 flex items-center justify-center">
+              <svg className="absolute inset-0" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" stroke="#40D47E" strokeWidth="10" fill="none" />
+              </svg>
+              <span className="absolute inset-0 flex items-center justify-center text-3xl font-bold text-customGray">{counts.online}</span>
+            </div>
+          </div>
+        </div>
+        <div className='flex transition-transform transform hover:scale-105 border-2 bg-customGreen rounded-lg border-lime-600'>
+          <button
+            className="flex gap-4 h-24 text-black text-left p-4 rounded-l-lg shadow-md justify-center items-center"
+            onClick={() => openModal('offline')}
+          >
+            <h2 className="text-lg text-white font-semibold mb-2">ATMs Offline</h2>
+          </button>
+
+          <div className='h-24 bg-white rounded-r-lg w-36 text-center flex flex-col items-center justify-center'>
+            <div className="relative w-20 h-20 flex items-center justify-center">
+              <svg className="absolute inset-0" viewBox="0 0 100 100">
+                <circle className={counts.offline > 0 ? "blink-border" : ""} cx="50" cy="50" r="45" stroke="#40D47E"  stroke-width="10" fill="none"  />
+              </svg>
+              <span className="absolute inset-0 flex items-center justify-center text-3xl font-bold text-customGray">{counts.offline}</span>
+            </div>
+          </div>
+        </div>     
       </div>
       <Modal
         isOpen={modalIsOpen}
@@ -157,30 +161,54 @@ const ATM: React.FC = () => {
         className="fixed text-black m-3 inset-0 flex items-center justify-center z-50"
         overlayClassName="fixed inset-0 bg-black bg-opacity-50 z-40"
       >
-        <div className="bg-white p-6 rounded-lg shadow-lg w-70 max-w-4xl h-70 max-h-screen overflow-y-auto">
-          <h2 className="text-xl font-semibold mb-4">{modalContent === 'total' ? 'ATMs Totales' : modalContent === 'online' ? 'ATMs Online' : 'ATMs Offline'}</h2>
-          <table className="min-w-full p-3 border-collapse border border-border shadow-lg">
-            <thead>
-              <tr className="bg-primary text-primary-foreground">
-                <th className="border border-border p-4 text-left">Identificador</th>
-                <th className="border border-border p-4 text-left">Tipo de error</th>
-                <th className="border border-border p-4 text-left">Ciudad</th>
-                <th className="border border-border p-4 text-left">Oficina</th>
-                <th className="border border-border p-4 text-left">Estado</th>
-              </tr>
-            </thead>
-            <tbody className="bg-card">
-              {getFilteredATMs().map(atm => (
-                <tr key={atm.id} className="hover:bg-secondary transition-colors duration-200">
-                  <td className="border border-border p-4">{atm.id}</td>
-                  <td className="border border-border p-4">{atm.errorType}</td>
-                  <td className="border border-border p-4">{atm.city}</td>
-                  <td className="border border-border p-4">{atm.office}</td>
-                  <td className="border border-border p-4">{atm.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="bg-white  p-6 rounded-lg shadow-lg w-70 max-w-4xl h-70 max-h-screen overflow-y-auto">
+          <div className="flex mb-4">
+            <button
+              className={`py-2 px-4 rounded-tl-lg ${selectedTab === 'table' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-black'}`}
+              onClick={() => setSelectedTab('table')}
+            >
+              Tabla
+            </button>
+            <button
+              className={`py-2 px-4 rounded-tr-lg ${selectedTab === 'welcome' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-black'}`}
+              onClick={() => setSelectedTab('welcome')}
+            >
+              Grafico
+            </button>
+          </div>
+          {selectedTab === 'table' ? (
+            <>
+              <h2 className="text-xl font-semibold mb-4">{modalContent === 'total' ? 'ATMs Totales' : modalContent === 'online' ? 'ATMs Online' : 'ATMs Offline'}</h2>
+              <table className="min-w-full p-3 border-collapse border border-border shadow-lg">
+                <thead>
+                  <tr className="bg-primary text-primary-foreground">
+                    <th className="border border-border p-4 text-left">Identificador</th>
+                    <th className="border border-border p-4 text-left">Tipo de error</th>
+                    <th className="border border-border p-4 text-left">Ciudad</th>
+                    <th className="border border-border p-4 text-left">Oficina</th>
+                    <th className="border border-border p-4 text-left">Estado</th>
+                  </tr>
+                </thead>
+                <tbody className="bg-card">
+                  {getFilteredATMs().map(atm => (
+                    <tr key={atm.id} className="hover:bg-secondary transition-colors duration-200">
+                      <td className="border border-border p-4">{atm.id}</td>
+                      <td className="border border-border p-4">{atm.errorType}</td>
+                      <td className="border border-border p-4">{atm.city}</td>
+                      <td className="border border-border p-4">{atm.office}</td>
+                      <td className="border border-border p-4">{atm.status}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          ) : (
+            <div className="text-center">
+              <h2 className="text-xl font-semibold mb-4">Grafico</h2>
+              <Graficos/>
+
+            </div>
+          )}
           <button
             onClick={closeModal}
             className="bg-blue-600 text-white py-2 px-4 rounded mt-4"
@@ -193,5 +221,6 @@ const ATM: React.FC = () => {
   );
 }
 export default ATM;
+ 
 
 

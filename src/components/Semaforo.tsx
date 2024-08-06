@@ -42,25 +42,25 @@ const Semaforo: React.FC = () => {
     }
 
     if (totalMinutes <= 15 && totalMinutes >= 0) {
-      return '#fd9b38';
+      return '#f6a823';
     } else if (totalMinutes < 40 && totalMinutes > 15) {
-      return '#fdcd4b';
+      return '#FBBF5D';
     } else if (totalMinutes <= 60 && totalMinutes >= 40) {
-      return '#5564eb';
+      return '#60A5FA';
     } else if (totalMinutes < 0) {
       return 'red';
     } else {
-      return '#057857';
+      return '#1e6901';
     }
   };
   return (
     <>
-      <div>
+      <div className='rounded-lg bg-white shadow-xl h-full  p-5 '>
       <p className='text-center mb-3 text-customGreen font-bold text-2xl'>Estado de envios SPI y SCI</p>
-      <div className="flex p-4 rounded-lg  text-black font-bold">
+      <div className="flex p-4 rounded-lg  text-black  font-bold">
         
         {[['Carga SCI1', cortesSCI1], ['Carga SCI3', cortesSCI3], ['Carga SPI1', cortesSPI1], ['Carga   SPI3', cortesSPI3]].map(([label, cortes], index) => (
-          <div key={label as string} className="bg-card border-4  bg-white border-black rounded-2xl p-4 w-28 h-96 mr-4">
+          <div key={label as string} className="bg-card border-2  bg-gray-300   rounded-2xl p-4 w-28 h-96 m-4">
             <h2 className="text-black text-center">{label as string}</h2>
             <div className="flex flex-col items-center  gap-4 pt-5">
               {(cortes as Date[]).map((corte, index) => {
@@ -69,7 +69,7 @@ const Semaforo: React.FC = () => {
                   <p
                     key={index}
                     style={{ backgroundColor: color }}
-                    className="bg-white text-white rounded-full w-20 h-20 flex items-center  justify-center "
+                    className={`bg-white text-white rounded-full w-20 h-20 flex items-center justify-center `}
                   >
                     {color === 'red' ? "X" : `Corte ${index + 1}`}
                   </p>
