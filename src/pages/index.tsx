@@ -3,6 +3,7 @@ import ATM from "@/components/ATM";
 import ProcesoBatch from "@/components/ProcesoBatch";
 
 
+
 export default function HomePage() {
   return (
     <div>

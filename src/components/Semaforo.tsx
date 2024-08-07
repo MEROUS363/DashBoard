@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Semaforo: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [alertTimes, setAlertTimes] = useState<{ [key: string]: number }>({});
 
   const today = new Date();
   
   const cortesSCI1 = [
-    new Date(today.getFullYear(), today.getMonth(), today.getDate(), 10, 0), // Corte 1: 10:00 AM
+    new Date(today.getFullYear(), today.getMonth(), today.getDate(), 10, 25), // Corte 1: 10:00 AM
     new Date(today.getFullYear(), today.getMonth(), today.getDate(), 11, 0), // Corte 2: 11:00 PM
     new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12, 0), // Corte 3: 12:00 PM
   ];
 
   const cortesSCI3 = [
-    new Date(today.getFullYear(), today.getMonth(), today.getDate(), 11, 0), // Corte 1: 11:00 AM
+    new Date(today.getFullYear(), today.getMonth(), today.getDate(), 11, 2), // Corte 1: 11:00 AM
     new Date(today.getFullYear(), today.getMonth(), today.getDate(), 15, 0), // Corte 2: 15:00 PM
     new Date(today.getFullYear(), today.getMonth(), today.getDate(), 19, 0), // Corte 3: 19:00 PM
   ];
@@ -37,11 +38,15 @@ const Semaforo: React.FC = () => {
     const totalMinutes = Math.floor(difference / (1000 * 60));
     const totalSeconds = Math.floor(difference / 1000);
 
-    if (totalMinutes === 15 && totalSeconds ===0)  {
+    const lastAlertTime = alertTimes[corte];
+    const currentTimeInMinutes = Math.floor(new Date().getTime() / (1000 * 60));
+
+    if (totalMinutes === 15 && (!lastAlertTime || currentTimeInMinutes - lastAlertTime >= 1)) {
       alert(`Faltan 15 minutos para cumplir con el SLA de ${corte}`);
+      setAlertTimes(prevTimes => ({ ...prevTimes, [corte]: currentTimeInMinutes }));
     }
 
-    if (totalMinutes <= 15 && totalMinutes >= 0) {
+    if (totalMinutes <= 15 && totalMinutes>=0) {
       return '#f6a823';
     } else if (totalMinutes < 40 && totalMinutes > 15) {
       return '#FBBF5D';
@@ -69,9 +74,9 @@ const Semaforo: React.FC = () => {
                   <p
                     key={index}
                     style={{ backgroundColor: color }}
-                    className={`bg-white text-white rounded-full w-20 h-20 flex items-center justify-center `}
+                    className={`text-white rounded-full w-20 h-20 flex items-center justify-center ${color === '#f6a823' ? 'blink' : ''} ${color === 'red' ? 'text-xl' : ''} `}
                   >
-                    {color === 'red' ? "X" : `Corte ${index + 1}`}
+                    {color === 'red' ? "X" : `Corte ${index + 1} ` }
                   </p>
                 );
               })}
