@@ -51,6 +51,7 @@ const ModalTable: React.FC<ModalTableProps> = ({ modalIsOpen, closeModal, modalC
 
   const options: ChartOptions<'line'> = {
     responsive: true,
+    maintainAspectRatio: false,
     scales: {
       x: {
         title: {
@@ -76,8 +77,8 @@ const ModalTable: React.FC<ModalTableProps> = ({ modalIsOpen, closeModal, modalC
       className="fixed text-black m-3 inset-0 flex items-center justify-center z-50"
       overlayClassName="fixed inset-0 bg-black bg-opacity-50 z-40"
     >
-      <div className="bg-white p-6 rounded-lg shadow-lg w-70 max-w-4xl h-70 max-h-screen overflow-y-auto">
-        <h2 className="text-xl font-semibold mb-4">{modalContent}</h2>
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-6xl h-full max-h-screen overflow-y-auto">
+        <h2 className="text-2xl font-semibold mb-4">{modalContent}</h2>
         <div className="mb-4">
           <button
             className={`mr-2 px-4 py-2 rounded focus:outline-none ${activeTab === 'table' ? 'border-b-2 border-green-500' : 'border-b-2 border-transparent'}`}
@@ -110,7 +111,7 @@ const ModalTable: React.FC<ModalTableProps> = ({ modalIsOpen, closeModal, modalC
             </tbody>
           </table>
         ) : (
-          <div className='w-full h-full'>
+          <div className='w-full h-96'>
             <Line data={data} options={options} />
           </div>
         )}

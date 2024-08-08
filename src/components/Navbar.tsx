@@ -15,7 +15,8 @@ const NavBar: React.FC = () => {
             <img  className='w-20' />
             <ul className='ist-none mt-2.5 '>
                 <li className=' flex  items-center rounded st-hv-cl duration-100 pb-5 w-16'  title='Home' >
-                    <Image src={logoimg} className='w-full ' alt="Logo" />                     
+                    {//<Image src={logoimg} className='w-full ' alt="Logo" />
+                    }                     
                 </li>
                 <li className=' p-2 flex justify-center items-center rounded st-hv-cl duration-100 mb-0.5' title='Home' >
                 <i className='bx bx-home-alt text-customGreen text-2xl' ></i>
