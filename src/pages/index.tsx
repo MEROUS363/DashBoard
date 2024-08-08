@@ -1,7 +1,7 @@
 import Semaforo from "@/components/Semaforo";
 import ATM from "@/components/ATM";
 import ProcesoBatch from "@/components/ProcesoBatch";
-
+import MyComponent from "@/components/escucha"
 
 
 export default function HomePage() {
@@ -19,9 +19,10 @@ export default function HomePage() {
 
         <Semaforo />
         <ATM/>
+        
         <div>
         </div>
-
+        <MyComponent/>
       </div>
       
     </div>
