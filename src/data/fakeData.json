@@ -1,0 +1,222 @@
+{
+    "ResultadosConsultaTerminados": [
+        {
+            "Hora": 10,
+            "Cantidad": 183
+        },
+        {
+            "Hora": 9,
+            "Cantidad": 514
+        },
+        {
+            "Hora": 8,
+            "Cantidad": 486
+        },
+        {
+            "Hora": 7,
+            "Cantidad": 439
+        },
+        {
+            "Hora": 6,
+            "Cantidad": 451
+        },
+        {
+            "Hora": 5,
+            "Cantidad": 559
+        },
+        {
+            "Hora": 4,
+            "Cantidad": 544
+        },
+        {
+            "Hora": 3,
+            "Cantidad": 252
+        },
+        {
+            "Hora": 2,
+            "Cantidad": 238
+        },
+        {
+            "Hora": 1,
+            "Cantidad": 455
+        },
+        {
+            "Hora": 0,
+            "Cantidad": 678
+        }
+    ],
+    "ResultadosConsultaEjecucion": [
+        {
+            "Hora": 10,
+            "Cantidad": 4
+        },
+        {
+            "Hora": 9,
+            "Cantidad": 7
+        },
+        {
+            "Hora": 8,
+            "Cantidad": 1
+        },
+        {
+            "Hora": 7,
+            "Cantidad": 1
+        },
+        {
+            "Hora": 6,
+            "Cantidad": 1
+        }
+    ],
+    "ResultadosConsultaEjecucionManual": [
+        {
+            "Hora": 10,
+            "Cantidad": 1
+        }
+    ],
+    "ResultadosConsultaAbortados": [
+        {
+            "Hora": 10,
+            "Cantidad": 3
+        },
+        {
+            "Hora": 9,
+            "Cantidad": 4
+        },
+        {
+            "Hora": 8,
+            "Cantidad": 4
+        },
+        {
+            "Hora": 7,
+            "Cantidad": 3
+        },
+        {
+            "Hora": 6,
+            "Cantidad": 3
+        },
+        {
+            "Hora": 4,
+            "Cantidad": 3
+        },
+        {
+            "Hora": 3,
+            "Cantidad": 1
+        },
+        {
+            "Hora": 1,
+            "Cantidad": 2
+        },
+        {
+            "Hora": 0,
+            "Cantidad": 2
+        }
+    ],
+    "ResultadosConsultaTodos": [
+        {
+            "Hora": 10,
+            "Cantidad": 191
+        },
+        {
+            "Hora": 9,
+            "Cantidad": 525
+        },
+        {
+            "Hora": 8,
+            "Cantidad": 491
+        },
+        {
+            "Hora": 7,
+            "Cantidad": 443
+        },
+        {
+            "Hora": 6,
+            "Cantidad": 455
+        },
+        {
+            "Hora": 5,
+            "Cantidad": 559
+        },
+        {
+            "Hora": 4,
+            "Cantidad": 547
+        },
+        {
+            "Hora": 3,
+            "Cantidad": 253
+        },
+        {
+            "Hora": 2,
+            "Cantidad": 238
+        },
+        {
+            "Hora": 1,
+            "Cantidad": 457
+        },
+        {
+            "Hora": 0,
+            "Cantidad": 680
+        }
+    ],
+    "ResultadosConsultaAbortadosLista": [
+        {
+            "Lote": 15,
+            "Proceso": 99906,
+            "Secuencia": 3,
+            "Cantidad": 1
+        },
+        {
+            "Lote": 10131,
+            "Proceso": 101176,
+            "Secuencia": 1,
+            "Cantidad": 1
+        },
+        {
+            "Lote": 30122,
+            "Proceso": 3010015,
+            "Secuencia": 3,
+            "Cantidad": 1
+        },
+        {
+            "Lote": 40001,
+            "Proceso": 400098,
+            "Secuencia": 29,
+            "Cantidad": 1
+        },
+        {
+            "Lote": 40015,
+            "Proceso": 4000161,
+            "Secuencia": 134,
+            "Cantidad": 2
+        },
+        {
+            "Lote": 50244,
+            "Proceso": 502317,
+            "Secuencia": 20,
+            "Cantidad": 1
+        },
+        {
+            "Lote": 90504,
+            "Proceso": 905181,
+            "Secuencia": 15,
+            "Cantidad": 1
+        },
+        {
+            "Lote": 90524,
+            "Proceso": 905556,
+            "Secuencia": 6,
+            "Cantidad": 1
+        },
+        {
+            "Lote": 170033,
+            "Proceso": 1700826,
+            "Secuencia": 20,
+            "Cantidad": 1
+        },
+        {
+            "Lote": 502508,
+            "Proceso": 5025133,
+            "Secuencia": 27,
+            "Cantidad": 1
+        }
+    ]
+}
